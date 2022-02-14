@@ -14,6 +14,24 @@ document.addEventListener("DOMContentLoaded", function() {
             cell.className = 'cell'
             cell.innerText = categoryData.title
             categoryRow.appendChild(cell)
+
+            fetch(`https://jservice.io//api/clues?category=${categoryData.id}`)
+            .then(response => response.json())
+            .then(clueData => renderQuestions(clueData))
+
+            function renderQuestions (clueData) {
+
+                clueData
+
+                for (let clue of clueData) {
+                    console.log(clue)
+                }
+
+                console.log(clueData)
+
+            }
+
+
         })
     }
 })

@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                     //Getting question and answer
                     const question = clue.question
-                    const answer = clue.answer
+                    const clueAnswer = clue.answer
                     
                     //Add values
                     const h3 = document.querySelector('#questionPopUp h3')
@@ -56,6 +56,27 @@ document.addEventListener("DOMContentLoaded", function() {
                     const modal = document.querySelector("#questionPopUp");
                     modal.style.display = "block";
 
+
+                    //Submit Form
+                    const questionForm = document.getElementById('questionForm')
+                    questionForm.addEventListener('submit', (e) => {
+
+                        e.preventDefault()
+
+                        const userAnswer = e.target.answer.value
+
+                        if (userAnswer === clueAnswer) {
+                            
+
+                        }
+                        else {
+
+
+                        }
+
+
+                    })
+                    
 
 
 

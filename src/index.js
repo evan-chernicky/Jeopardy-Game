@@ -1,6 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
     function fetchCategories() {
-        fetch('https://jservice.io//api/categories?count=6&offset=58')
+
+        let random = Math.floor(Math.random() * (10000 - 0 + 1)) + 0;
+        let randomAddress = `https://jservice.io//api/categories?count=6&offset=${random}`
+
+        fetch(randomAddress)
         .then(response => response.json())
         .then(data => renderCategories(data))
     }

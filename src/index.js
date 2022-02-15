@@ -63,29 +63,35 @@ document.addEventListener("DOMContentLoaded", function() {
 
                         e.preventDefault()
                         questionForm.style.display = "none";
+                        const h4 = document.createElement('h4');
+                        const h5 = document.createElement('h5');
 
                         const userAnswer = e.target.answer.value
                         const closeBox = document.querySelector('.close')
                         closeBox.style.display = 'block';
                         // When the user clicks on <span> (x), close the modal
                         closeBox.onclick = function() {
-                        modal.style.display = "none";
-                        cell.classList.add('disabled');
+                            questionForm.style.display = 'block';
+                            modal.style.display = "none";
+                            cell.classList.add('disabled');
+                            h4.remove()
+                            h5.remove()
+                            
                         }
-
+                        
                         if (userAnswer === clueAnswer) {
-                            const h4 = document.createElement('h4');
+                         
                             h4.innerText = 'CORRECT!'
                             h4.style.color = 'green'
                             h3.appendChild(h4)
                         }
                         else {
-                            const h4 = document.createElement('h4');
+                            
                             h4.innerText = 'INCORRECT!'
                             h4.style.color = 'red'
                             h3.appendChild(h4)
 
-                            const h5 = document.createElement('h5');
+                           
                             h5.innerText = clueAnswer
                             h4.appendChild(h5);
                    

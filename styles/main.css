@@ -69,7 +69,8 @@ html, body {
 }
 
 .cell.question.disabled {
-    background: lightgray; 
+    background: lightgray;
+    pointer-events: none; 
 }
 
 /* The Modal (background) */

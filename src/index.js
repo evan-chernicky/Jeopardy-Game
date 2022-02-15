@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //Fetch data on cell click
     let cellHTML = document.querySelectorAll('.cell');
     let cellQ = Array.from(cellHTML)
+    let score = 0;
 
     for (let cell of cellQ) {
         cell.addEventListener('click', () => {
@@ -54,8 +55,6 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(clue => renderClue(clue[0]))
 
             function renderClue(clue) {
-
-                console.log(clue)
 
 
                 //Getting question and answer
@@ -77,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 //Submit Form
                 const questionForm = document.getElementById('questionForm')
 
-                questionForm.addEventListener('submit', (e) => {
+                questionForm.addEventListener('submit', function renderAnswer (e) {
                     
                     e.preventDefault()                    
 
@@ -87,7 +86,6 @@ document.addEventListener("DOMContentLoaded", function() {
                     const userAnswer = e.target.answer.value
                     const modalContent = document.querySelector('.modal-content')
 
-                    console.log(e)
 
                     closeBox.style.display = 'block';
                     
@@ -111,7 +109,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     questionForm.reset()
 
 
-                })
+                }, {once: true} )
+
 
                     // When the user clicks on <span> (x), close the modal
                     const closeBox = document.querySelector('.close')
@@ -122,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         h4.remove()
                         h5.remove()
                         modal.style.display = "none";
-                        cell.classList.add('disabled');                         
+                        cell.classList.add('disabled');
                     })   
                 
 

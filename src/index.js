@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
     function fetchCategories() {
 
-        let random = Math.floor(Math.random() * 10000)
-        let randomAddress = `https://jservice.io//api/categories?count=6&offset=${random}`
+        let random = Math.floor(Math.random() * 1000)
+        let randomAddress = `https://jservice.io//api/categories?count=6&offset=53`
 
         fetch(randomAddress)
         .then(response => response.json())
@@ -43,6 +43,9 @@ document.addEventListener("DOMContentLoaded", function() {
     let cellHTML = document.querySelectorAll('.cell');
     let cellQ = Array.from(cellHTML)
     let score = 0;
+    let scoreSpan = document.querySelector('.score-count')
+    scoreSpan.innerText = score
+    let turns = 30
 
     for (let cell of cellQ) {
         cell.addEventListener('click', () => {
@@ -59,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 //Getting question and answer
                 const question = clue.question
-                const clueAnswer = clue.answer
+                const clueAnswer = clue.answer.replace('<i>', '')
                 
                 //Add values
                 const h3 = document.querySelector('#questionPopUp h3')
@@ -75,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 //Submit Form
                 const questionForm = document.getElementById('questionForm')
+                const closeBox = document.querySelector('.close')
 
                 questionForm.addEventListener('submit', function renderAnswer (e) {
                     
@@ -86,14 +90,22 @@ document.addEventListener("DOMContentLoaded", function() {
                     const userAnswer = e.target.answer.value
                     const modalContent = document.querySelector('.modal-content')
 
+                    //subtracts turn
+                    turns--
+
+                    console.log(turns)
 
                     closeBox.style.display = 'block';
                     
-                    if (userAnswer === clueAnswer) {
+                    if (userAnswer.toLowerCase() === clueAnswer.toLowerCase()) {
                         
                         h4.innerText = 'CORRECT!'
                         h4.style.color = 'green'
                         modalContent.appendChild(h4)
+
+                        score = score + Number.parseInt(value)
+                        scoreSpan.innerText = score
+
                     }
                     else {
                         
@@ -112,8 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }, {once: true} )
 
 
-                    // When the user clicks on <span> (x), close the modal
-                    const closeBox = document.querySelector('.close')
+                if (turns > 0) {                    
 
                     closeBox.addEventListener('click', () =>  {
 
@@ -122,7 +133,16 @@ document.addEventListener("DOMContentLoaded", function() {
                         h5.remove()
                         modal.style.display = "none";
                         cell.classList.add('disabled');
-                    })   
+                        closeBox.style.display = 'none';
+
+                    }) 
+                    
+                }
+                else {
+
+                    console.log('Finished Game!')
+
+                }
                 
 
             }

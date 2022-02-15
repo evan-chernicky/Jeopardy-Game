@@ -25,97 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
             cells.forEach(cell => cell.setAttribute('category-id', data[i].id))
 
         }
-        
-        //Fetch data on cell click
-        let cellHTML = document.querySelectorAll('.cell');
-        let cellQ = Array.from(cellHTML)
-
-        for (let cell of cellQ) {
-            cell.addEventListener('click', () => {
-
-                let value = cell.getAttribute('value')
-                let category = cell.getAttribute('category-id')
-
-                fetch(`https://jservice.io//api/clues?value=${value}&category=${category}`)
-                .then(response => response.json())
-                .then(clue => renderClue(clue[0]))
-
-                function renderClue(clue) {
-
-
-                    //Getting question and answer
-                    const question = clue.question
-                    const clueAnswer = clue.answer
-                    
-                    //Add values
-                    const h3 = document.querySelector('#questionPopUp h3')
-                    h3.innerText = question
-
-                    
-                    //Open Modal
-                    const modal = document.querySelector("#questionPopUp");
-                    modal.style.display = "block";
-
-
-                    //Submit Form
-                    const questionForm = document.getElementById('questionForm')
-                    questionForm.addEventListener('submit', (e) => {
-
-                        e.preventDefault()
-                        questionForm.style.display = "none";
-                        const h4 = document.createElement('h4');
-                        const h5 = document.createElement('h5');
-
-                        const userAnswer = e.target.answer.value
-                        const closeBox = document.querySelector('.close')
-                        closeBox.style.display = 'block';
-                        // When the user clicks on <span> (x), close the modal
-                        closeBox.onclick = function() {
-                            questionForm.style.display = 'block';
-                            modal.style.display = "none";
-                            cell.classList.add('disabled');
-                            h4.remove()
-                            h5.remove()
-                            
-                        }
-                        
-                        if (userAnswer === clueAnswer) {
-                         
-                            h4.innerText = 'CORRECT!'
-                            h4.style.color = 'green'
-                            h3.appendChild(h4)
-                        }
-                        else {
-                            
-                            h4.innerText = 'INCORRECT!'
-                            h4.style.color = 'red'
-                            h3.appendChild(h4)
-
-                           
-                            h5.innerText = clueAnswer
-                            h4.appendChild(h5);
-                   
-
-
-                        }
-
-
-                    })
-                    
-
-
-
-                }
-
-
-            })
-
-        }
-
-
-
-
-
+    
         //Adds categories to category row
         data.forEach(categoryData => {
 
@@ -129,9 +39,104 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }
 
+    //Fetch data on cell click
+    let cellHTML = document.querySelectorAll('.cell');
+    let cellQ = Array.from(cellHTML)
+
+    for (let cell of cellQ) {
+        cell.addEventListener('click', () => {
+
+            let value = cell.getAttribute('value')
+            let category = cell.getAttribute('category-id')
+
+            fetch(`https://jservice.io//api/clues?value=${value}&category=${category}`)
+            .then(response => response.json())
+            .then(clue => renderClue(clue[0]))
+
+            function renderClue(clue) {
+
+                console.log(clue)
+
+
+                //Getting question and answer
+                const question = clue.question
+                const clueAnswer = clue.answer
+                
+                //Add values
+                const h3 = document.querySelector('#questionPopUp h3')
+                const h4 = document.createElement('h4');
+                const h5 = document.createElement('h5');
+                h3.innerText = question
+
+                
+                //Open Modal
+                const modal = document.querySelector("#questionPopUp");
+                modal.style.display = "block";
+
+
+                //Submit Form
+                const questionForm = document.getElementById('questionForm')
+
+                questionForm.addEventListener('submit', (e) => {
+                    
+                    e.preventDefault()                    
+
+                    questionForm.style.display = "none";
+
+
+                    const userAnswer = e.target.answer.value
+                    const modalContent = document.querySelector('.modal-content')
+
+                    console.log(e)
+
+                    closeBox.style.display = 'block';
+                    
+                    if (userAnswer === clueAnswer) {
+                        
+                        h4.innerText = 'CORRECT!'
+                        h4.style.color = 'green'
+                        modalContent.appendChild(h4)
+                    }
+                    else {
+                        
+                        h4.innerText = 'INCORRECT!'
+                        h4.style.color = 'red'
+                        modalContent.appendChild(h4)
+        
+                        h5.innerText = clueAnswer
+                        modalContent.appendChild(h5);
+            
+
+                    }
+                    questionForm.reset()
+
+
+                })
+
+                    // When the user clicks on <span> (x), close the modal
+                    const closeBox = document.querySelector('.close')
+
+                    closeBox.addEventListener('click', () =>  {
+
+                        questionForm.style.display = 'block';
+                        h4.remove()
+                        h5.remove()
+                        modal.style.display = "none";
+                        cell.classList.add('disabled');                         
+                    })   
+                
+
+            }
+
+
+        })
+
+    }
+
 
 
 })
+
 
 
 
@@ -159,5 +164,4 @@ document.addEventListener("DOMContentLoaded", function() {
 //     modal.style.display = "none";
 //   }
 // }
-
 

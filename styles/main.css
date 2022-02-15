@@ -6,6 +6,21 @@ html, body {
     height: 100%;
     margin: 0;
 }
+header {
+    height: 10%;
+    margin-top: 40px;
+}
+main {
+    height: 90%
+}
+
+.top-header h1 {
+    text-align: center;
+}
+.top-header p {
+    text-align: center;
+    font-weight: 700;
+}
 
 #jeapordyBoard {
     display: flex;

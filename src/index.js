@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
         for (let i = 0;  i <= 5;  i++){ //loop through 6 times (for each category and row)
 
             cellsData = columns[i].getElementsByClassName('cell')
-            cells = Array.from(cellsData)
+            let cells = Array.from(cellsData)
             cells.forEach(cell => cell.setAttribute('category-id', data[i].id))
 
         }
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         const userAnswer = e.target.answer.value
 
                         if (userAnswer === clueAnswer) {
-                            
+
 
                         }
                         else {

@@ -68,6 +68,9 @@ html, body {
     background: #2699FB;
 }
 
+.cell.question.disabled {
+    background: lightgray; 
+}
 
 /* The Modal (background) */
 .modal {

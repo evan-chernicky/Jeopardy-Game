@@ -105,6 +105,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         h4.innerText = 'CORRECT!'
                         h4.style.color = 'green'
                         modalContent.appendChild(h4)
+                        cell.classList.add('disabled-correct');
 
                         score = score + Number.parseInt(value)
                         scoreSpan.innerText = score
@@ -116,8 +117,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         h4.style.color = 'red'
                         modalContent.appendChild(h4)
         
-                        h5.innerText = clueAnswer
+                        h5.innerText = `Answer: ${clueAnswer}`
                         modalContent.appendChild(h5);
+                        cell.classList.add('disabled-wrong');
             
 
                     }
@@ -132,7 +134,6 @@ document.addEventListener("DOMContentLoaded", function() {
                         h4.remove()
                         h5.remove()
                         modal.style.display = "none";
-                        cell.classList.add('disabled');
                         closeBox.style.display = 'none';
 
                     }) 
@@ -196,32 +197,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 })
-
-
-
-
-// //Adding Modal
-
-// // Get the modal
-// var modal = document.getElementById("myModal");
-
-// // Get the button that opens the modal
-// var btn = document.getElementById("myBtn");
-
-// // Get the <span> element that closes the modal
-// var span = document.getElementsByClassName("close")[0];
-
-// // When the user clicks on the button, open the modal
-// btn.onclick = function() {
-//   modal.style.display = "block";
-// }
-
-
-
-// // When the user clicks anywhere outside of the modal, close it
-// window.onclick = function(event) {
-//   if (event.target == modal) {
-//     modal.style.display = "none";
-//   }
-// }
 

@@ -6,6 +6,10 @@ html, body {
     height: 100%;
     margin: 0;
 }
+body {
+    background: url('../assets/Live-Wave-Background.svg');
+    background-size: cover;
+}
 header {
     height: 10%;
     margin-top: 40px;
@@ -16,6 +20,15 @@ main {
 
 h4, h5 {
     text-align: center;
+}
+
+h4 {
+    font-size: 22px;
+}
+
+h5 {
+    text-transform: capitalize;
+    font-size: 16px;
 }
 
 .top-header h1 {
@@ -63,7 +76,7 @@ h4, h5 {
     align-items: center;
     justify-content: center;
     margin: 0 18px;
-    background: #7FC4FD;
+    background: #fff;
     font-weight: 700;
     box-shadow: 3px 4px 12px rgb(0 0 0 / 20%);
 }
@@ -79,18 +92,24 @@ h4, h5 {
 .cell.question {
     margin: 18px 0;
     font-size: 2.3rem;
-    color: #FFFF00;
+    color: #000;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .cell.question:hover {
-    background: #2699FB;
+    background: lightgoldenrodyellow;
     transform: scale(1.1)
 }
 
-.cell.question.disabled {
-    background: lightgray;
+.cell.question.disabled-wrong {
+    background: lightcoral;
+    pointer-events: none; 
+    box-shadow: none;
+}
+
+.cell.question.disabled-correct {
+    background: lightgreen;
     pointer-events: none; 
     box-shadow: none;
 }
@@ -139,7 +158,7 @@ h4, h5 {
    
   /* The Close Button */
   .close {
-    color: #aaa;
+    color: #000;
     float: right;
     font-size: 28px;
     font-weight: bold;

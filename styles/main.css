@@ -201,7 +201,7 @@ input[type="text"] {
 }
 
 .finish-btn, .newGame-btn {
-    margin: auto;
+    margin: 30px auto;
     display: block;
 }
 

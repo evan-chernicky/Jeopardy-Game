@@ -1,5 +1,8 @@
 # PROJECT: JEOPARDY GAME BOARD (Brian A., Evan C., Jane K.)
 
+## VIEW PROJECT
+[Project Link](https://evan-chernicky.github.io/Jeopardy-Game/)
+
 ## DESCRIPTION 
 -This app will allow users to interact with a Jeopardy game board to select questions based on a chosen category and answer trivia questions. 
 

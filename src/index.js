@@ -59,12 +59,12 @@ document.addEventListener("DOMContentLoaded", function() {
             function renderClue(clue) {
 
 
+
                 //Getting question and answer
                 const question = clue.question
-                const clueAnswer = clue.answer.replace(/[^a-z0-9]/gi,' ')
+                const clueAnswer = clue.answer.replace(/[^\w\s!?]/g,'')
                 clueAnswer.replace('<i>','')
                 clueAnswer.replace('</i>','')
-
 
                 
                 //Add values
@@ -90,14 +90,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     e.preventDefault()                    
 
                     questionForm.style.display = "none";
-
-
                     const userAnswer = e.target.answer.value
 
                     //subtracts turn
                     turns--
-
-                    console.log(turns)
 
                     closeBox.style.display = 'block';
                     

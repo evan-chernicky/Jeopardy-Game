@@ -15,8 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
         //Adds category ID to cells
-        const columnsData = document.getElementsByClassName('question-column')
-        const columns = Array.from(columnsData)
+        const columns = Array.from(document.getElementsByClassName('question-column'))
        
         for (let i = 0;  i <= 5;  i++){ //loop through 6 times (for each category and row)
 
@@ -62,7 +61,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 //Getting question and answer
                 const question = clue.question
-                const clueAnswer = clue.answer.replace('<i>', '')
+                const clueAnswer = clue.answer.replace(/[^a-z0-9]/gi,' ')
+                clueAnswer.replace('<i>','')
+                clueAnswer.replace('</i>','')
+
+
                 
                 //Add values
                 const h3 = document.querySelector('#questionPopUp h3')
@@ -79,6 +82,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 //Submit Form
                 const questionForm = document.getElementById('questionForm')
                 const closeBox = document.querySelector('.close')
+                const modalContent = document.querySelector('.modal-content')
+
 
                 questionForm.addEventListener('submit', function renderAnswer (e) {
                     
@@ -88,7 +93,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
                     const userAnswer = e.target.answer.value
-                    const modalContent = document.querySelector('.modal-content')
 
                     //subtracts turn
                     turns--
@@ -118,10 +122,7 @@ document.addEventListener("DOMContentLoaded", function() {
             
 
                     }
-                    questionForm.reset()
 
-
-                }, {once: true} )
 
 
                 if (turns > 0) {                    
@@ -140,9 +141,50 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
                 else {
 
-                    console.log('Finished Game!')
+
+                    finishBtn = document.createElement('button')
+                    finishBtn.setAttribute('type', 'button')
+                    finishBtn.textContent = 'Finish Game!'
+                    finishBtn.className = 'finish-btn'
+                    modalContent.appendChild(finishBtn)
+
+                    finishBtn.addEventListener('click', () => {
+
+                        h3.textContent = `Final Score: ${score}`
+                        h4.remove()
+                        h5.remove()
+                        finishBtn.remove()
+
+                        newGame = document.createElement('button')
+                        newGame.setAttribute('type', 'button')
+                        newGame.textContent = 'Play Again?'
+                        newGame.className = 'newGame-btn'
+                        modalContent.appendChild(newGame)
+                        
+                        newGame.addEventListener('click', () => {
+
+                            document.location.reload(true)
+
+                        } )
+
+
+
+                    })
+                    
+
+
 
                 }
+
+
+
+                    questionForm.reset()
+
+
+                }, {once: true} )
+
+
+
                 
 
             }

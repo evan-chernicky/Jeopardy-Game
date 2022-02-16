@@ -146,3 +146,8 @@ form {
     display: block;
     margin-bottom: 20px;
 }
+
+.finish-btn, .newGame-btn {
+    margin: auto;
+    display: block;
+}

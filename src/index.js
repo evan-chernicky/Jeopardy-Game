@@ -60,6 +60,8 @@ document.addEventListener("DOMContentLoaded", function() {
         startGame.textContent = 'Start Game!'
         startGame.className = 'newGame-btn'
         modalContent.appendChild(startGame)
+        const h3 = document.querySelector('#questionPopUp h3')
+        h3.innerHTML = 'Welcome to Jeopardy'
 
         startGame.addEventListener('click', () => {
 

@@ -38,6 +38,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }
 
+    //Add theme music
+    var audio = new Audio('./assets/Jeopardy_Intro.mp3');
+    document.addEventListener('click', () => audio.play() )
+
     //Fetch data on cell click
     let cellHTML = document.querySelectorAll('.cell');
     let cellQ = Array.from(cellHTML)

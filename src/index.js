@@ -6,12 +6,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
         fetch(randomAddress)
         .then(response => response.json())
-        .then(data => renderCategories(data))
+        .then(data =>  renderCategories(data))
     }
 
     fetchCategories()
 
     function renderCategories(data) {
+
 
 
         //Adds category ID to cells
@@ -38,9 +39,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }
 
-    // //Add theme music
-    // var audio = new Audio('./assets/Jeopardy_Intro.mp3');
-    // document.addEventListener('click', () => audio.play() )
 
     //Fetch data on cell click
     let cellHTML = document.querySelectorAll('.cell');
@@ -49,6 +47,36 @@ document.addEventListener("DOMContentLoaded", function() {
     let scoreSpan = document.querySelector('.score-count')
     scoreSpan.innerText = score
     let turns = 30
+    const modalContent = document.querySelector('.modal-content')
+
+    
+    function startGame () {
+        const modalStart = document.querySelector("#questionPopUp");
+        const form = document.querySelector('#questionForm')
+        form.style.display = 'none'
+        modalStart.style.display = 'block'
+        const startGame = document.createElement('button')
+        startGame.setAttribute('type', 'button')
+        startGame.textContent = 'Start Game!'
+        startGame.className = 'newGame-btn'
+        modalContent.appendChild(startGame)
+
+        startGame.addEventListener('click', () => {
+
+            //Add theme music
+            const themeMusic = new Audio('./assets/Jeopardy_Intro.mp3');
+            themeMusic.play()
+
+            startGame.remove()
+            modalStart.style.display = 'none'
+
+
+
+        })
+    }
+    startGame()
+
+
 
     for (let cell of cellQ) {
         cell.addEventListener('click', () => {
@@ -81,11 +109,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 const modal = document.querySelector("#questionPopUp");
                 modal.style.display = "block";
 
-
                 //Submit Form
                 const questionForm = document.getElementById('questionForm')
+                questionForm.style.display = 'block'
                 const closeBox = document.querySelector('.close')
-                const modalContent = document.querySelector('.modal-content')
 
 
                 questionForm.addEventListener('submit', function renderAnswer (e) {
@@ -196,5 +223,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
+
+
 })
+
 

@@ -65,6 +65,7 @@ h4, h5 {
     margin: 0 18px;
     background: #7FC4FD;
     font-weight: 700;
+    box-shadow: 3px 4px 12px rgb(0 0 0 / 20%);
 }
 
 
@@ -80,16 +81,18 @@ h4, h5 {
     font-size: 2.3rem;
     color: #FFFF00;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: 0.3s;
 }
 
 .cell.question:hover {
     background: #2699FB;
+    transform: scale(1.1)
 }
 
 .cell.question.disabled {
     background: lightgray;
     pointer-events: none; 
+    box-shadow: none;
 }
 
 /* The Modal (background) */
@@ -108,19 +111,32 @@ h4, h5 {
   
   /* Modal Content/Box */
   .modal-content {
+    position: relative;
     background-color: #fefefe;
     margin: 15% auto; /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
+    border-radius: 15px;
     width: 80%; /* Could be more or less, depending on screen size */
     max-width: 700px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation: animatetop;
+    animation-duration: 0.4s
   }
 
   .modal-content h3 {
     text-align: center;
     font-size: 1.5rem;
 }
+
+/* Add Animation */
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+  }
   
+
+   
   /* The Close Button */
   .close {
     color: #aaa;
@@ -150,4 +166,11 @@ form {
 .finish-btn, .newGame-btn {
     margin: auto;
     display: block;
+}
+
+
+/* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
 }

@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     function fetchCategories() {
 
-        let random = Math.floor(Math.random() * 500)
+        let random = Math.floor(Math.random() * 100)
         let randomAddress = `https://jservice.io//api/categories?count=6&offset=${random}`
 
         fetch(randomAddress)

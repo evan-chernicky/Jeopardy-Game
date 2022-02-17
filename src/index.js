@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
                 //Getting question and answer
                 const question = clue.question
-                const clueAnswer = clue.answer.replace('</i>','').replace('<i>','').replace(/[^\w\s!?]/g,'')
+                const clueAnswer = clue.answer.replace('</i>','').replace('<i>','').replace('a ','').replace(/[^\w\s!?]/g,'')
 
 
                 

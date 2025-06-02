@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function fetchCategories() {
 
         let random = Math.floor(Math.random() * 100)
-        let randomAddress = `https://rithm-jeopardy.herokuapp.com/api/categories?count=6&offset=${random}`
+        let randomAddress = `https://jservice.io//api/categories?count=6&offset=${random}`
 
         fetch(randomAddress)
         .then(response => response.json())
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
             let value = cell.getAttribute('value')
             let category = cell.getAttribute('category-id')
 
-            fetch(`https://rithm-jeopardy.herokuapp.com/api/clues?value=${value}&category=${category}`)
+            fetch(`https://jservice.io//api/clues?value=${value}&category=${category}`)
             .then(response => response.json())
             .then(clue => renderClue(clue[0]))
 
